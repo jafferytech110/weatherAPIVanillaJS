@@ -7,7 +7,6 @@ window.addEventListener("load", () => {
   );
   let temperatureDegree = document.querySelector(".temperature-degree");
   let locationTimezone = document.querySelector(".location-timezone");
-  let icon = "04n";
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
       longitude = position.coords.longitude;
@@ -28,16 +27,15 @@ window.addEventListener("load", () => {
           temperatureDegree.textContent = Math.round(temp - 273.15);
           temperatureDescription.textContent = summary;
           locationTimezone.textContent = data.timezone;
-          icon = data.current.weather[0].icon;
-
-          //calling setIcons()
-          setIcons();
+          // icon = data.current.weather[0].icon;
+          document.querySelector(
+            "#weatherIcon"
+          ).src = `http://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png`;
         });
     });
   }
-  function setIcons() {
-    document.querySelector(
-      "#weatherIcon"
-    ).src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
-  }
 });
+
+webView
+  .getSettings()
+  .setGeolocationDatabasePath(context.getFilesDir().getPath());
