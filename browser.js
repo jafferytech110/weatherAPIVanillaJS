@@ -35,7 +35,3 @@ window.addEventListener("load", () => {
     });
   }
 });
-
-webView
-  .getSettings()
-  .setGeolocationDatabasePath(context.getFilesDir().getPath());
